@@ -7,6 +7,7 @@
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_k74f6")
+max_spawn_rock_time = 2.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource("2_bo1ys")
@@ -16,10 +17,11 @@ motion_mirroring = Vector2(576, 0)
 
 [node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 unique_name_in_owner = true
-position = Vector2(288, 160)
-scale = Vector2(0.72, 0.666667)
+position = Vector2(288, 162)
+scale = Vector2(0.72, 0.675)
 texture = ExtResource("3_n505a")
 
 [node name="plane" parent="." instance=ExtResource("2_3dxjm")]
+unique_name_in_owner = true
 position = Vector2(70, 177)
 scale = Vector2(0.5, 0.5)

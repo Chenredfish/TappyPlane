@@ -26,13 +26,14 @@ animations = [{
 radius = 40.3113
 
 [node name="plane" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_y8duw")
 flip_power = 300
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hftvr")
 autoplay = "default"
-frame_progress = 0.850563
+frame_progress = 0.466737
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1mdwt")
