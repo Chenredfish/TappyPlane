@@ -1,19 +1,30 @@
 extends Node2D
 
-var timer:Timer = Timer.new()
+
 @export var min_spawn_rock_time := 1.0
 @export var max_spawn_rock_time := 3.0
 
 @onready var plane = %plane
+@onready var game_form = %GameForm
+
 
 var s_rock = preload("res://src/entities/rock.tscn") #返回路徑，可以從場景那裡拖出來
+var current_score :int = 0
+
+var score_timer:Timer = Timer.new()
+var timer:Timer = Timer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.timeout.connect(_on_timer_timeout)
+	timer.one_shot = true
 	timer.wait_time = randf_range(min_spawn_rock_time, max_spawn_rock_time)
 	self.add_child(timer)
 	timer.start()
+	score_timer.timeout.connect(_on_score_timer_timeout)
+	score_timer.wait_time = 1
+	self.add_child(score_timer)
+	score_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -53,3 +64,7 @@ func _on_timer_timeout()->void:
 	
 func _on_rock_entered()->void:
 	game_over()
+
+func _on_score_timer_timeout()->void:
+	current_score +=1
+	game_form.update_socre_display(current_score)
