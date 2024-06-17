@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://beaf8thl7vmcg"]
+
+[ext_resource type="Script" path="res://src/entities/rock.gd" id="1_6gl36"]
+[ext_resource type="Texture2D" uid="uid://djkiupc05u0i" path="res://assets/textures/entities/rocks/rock.png" id="2_tivu1"]
+
+[node name="rock" type="CharacterBody2D"]
+script = ExtResource("1_6gl36")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tivu1")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(9, -117, 15, -117, 26, -15, 39, 55, 52, 117, -52, 117, -15, 4)
