@@ -9,6 +9,7 @@ extends Node2D
 
 
 var s_rock = preload("res://src/entities/rock.tscn") #返回路徑，可以從場景那裡拖出來
+var s_plane = preload("res://src/entities/plane.tscn")
 var current_score :int = 0
 
 var score_timer:Timer = Timer.new()
@@ -22,9 +23,25 @@ func _ready():
 	self.add_child(timer)
 	timer.start()
 	score_timer.timeout.connect(_on_score_timer_timeout)
-	score_timer.wait_time = 1
 	self.add_child(score_timer)
+	new_game()
+
+func new_game()->void:
+	if not plane:
+		plane = s_plane.instantiate()
+		plane.position = Vector2(70, 177)
+		plane.scale = Vector2(0.5,0.5)
+		self.add_child(plane)
+	
+	
+	
+	current_score = 0
+	game_form.update_socre_display(current_score)
+	
+	score_timer.wait_time = 1
 	score_timer.start()
+	game_form.retry_game()
+	get_tree().paused = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -52,7 +69,8 @@ func game_over():
 	for rock in get_tree().get_nodes_in_group("rock"):
 		rock.queue_free()
 		
-	print("game over")
+	game_form.game_over()
+	#print("game over")
 
 
 	
@@ -68,3 +86,11 @@ func _on_rock_entered()->void:
 func _on_score_timer_timeout()->void:
 	current_score +=1
 	game_form.update_socre_display(current_score)
+
+
+func _on_game_form_quit_pressed():
+	get_tree().quit()
+
+
+func _on_game_form_retry_pressed():
+	new_game()

@@ -1,6 +1,8 @@
 extends Control
 
 @onready var score_container = %ScoreContainer
+@onready var w_game_over_popup = $w_game_over_popup
+
 
 var number_texture:=[
 	preload("res://assets/textures/widgets/numbers/number0.png"),
@@ -14,6 +16,20 @@ var number_texture:=[
 	preload("res://assets/textures/widgets/numbers/number8.png"),
 	preload("res://assets/textures/widgets/numbers/number9.png"),
 ]
+
+signal quit_pressed
+signal retry_pressed
+
+func _ready():
+	w_game_over_popup.hide()
+
+#重開遊戲
+func retry_game():
+	w_game_over_popup.hide()
+
+#遊戲結束
+func game_over():
+	w_game_over_popup.show()
 
 func update_socre_display(current_score:int)->void:
 	var score_str:String = str(current_score)
@@ -29,3 +45,11 @@ func update_socre_display(current_score:int)->void:
 			digit_spirit = score_container.get_child(i) #調整第幾位的數字
 
 		digit_spirit.texture = number_texture[digit] #將照片放入，也就是上面的調整數字
+
+
+func _on_btm_quit_pressed():
+	quit_pressed.emit()
+
+
+func _on_btn_retry_pressed():
+	retry_pressed.emit()

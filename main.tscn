@@ -29,3 +29,7 @@ scale = Vector2(0.5, 0.5)
 
 [node name="GameForm" parent="." instance=ExtResource("5_euur8")]
 unique_name_in_owner = true
+process_mode = 3
+
+[connection signal="quit_pressed" from="GameForm" to="." method="_on_game_form_quit_pressed"]
+[connection signal="retry_pressed" from="GameForm" to="." method="_on_game_form_retry_pressed"]
