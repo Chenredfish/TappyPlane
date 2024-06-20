@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4hbr21tf740b"]
+
+[ext_resource type="Texture2D" uid="uid://bs67ypxaa05ql" path="res://assets/textures/widgets/icons/medalGold.png" id="1_fwf14"]
+[ext_resource type="Script" path="res://src/widgets/w_rank.gd" id="1_uce67"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lakws"]
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_kpk67"]
+font_size = 12
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wa4er"]
+font_size = 12
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="w_rank" type="MarginContainer"]
+custom_minimum_size = Vector2(120, 55)
+script = ExtResource("1_uce67")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "EMPTY"
+label_settings = SubResource("LabelSettings_lakws")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="tr_medal" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_fwf14")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="lab_name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "name:XXX"
+label_settings = SubResource("LabelSettings_kpk67")
+vertical_alignment = 1
+
+[node name="lab_score" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "score:999"
+label_settings = SubResource("LabelSettings_wa4er")
+vertical_alignment = 1

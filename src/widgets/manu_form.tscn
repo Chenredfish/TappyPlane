@@ -1,0 +1,172 @@
+[gd_scene load_steps=9 format=3 uid="uid://dag4os62ioe28"]
+
+[ext_resource type="Texture2D" uid="uid://di0c62wqxxpxk" path="res://assets/textures/widgets/others/UIbg.png" id="1_lpng4"]
+[ext_resource type="Script" path="res://src/widgets/manu_form.gd" id="1_sw0nh"]
+[ext_resource type="Texture2D" uid="uid://cf4urcy4ejis2" path="res://assets/textures/widgets/others/yellow_button00.png" id="2_6fqup"]
+[ext_resource type="Texture2D" uid="uid://lfc2uf3ik7v" path="res://assets/textures/widgets/others/yellow_button13.png" id="3_6f08m"]
+[ext_resource type="Texture2D" uid="uid://bllad25nq28qn" path="res://assets/textures/widgets/others/grey_button00.png" id="5_lnm86"]
+[ext_resource type="PackedScene" uid="uid://drivv3f1etjfo" path="res://src/widgets/w_setting_popup.tscn" id="6_5ti1o"]
+[ext_resource type="PackedScene" uid="uid://dct81mwb54xgk" path="res://src/widgets/w_rank_popup.tscn" id="7_nfq64"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h8lis"]
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ManuForm" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_sw0nh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -33.0
+offset_right = 33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_lpng4")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="btn_new_game" type="TextureButton" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+texture_normal = ExtResource("2_6fqup")
+texture_disabled = ExtResource("3_6f08m")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/btn_new_game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "開始遊戲"
+label_settings = SubResource("LabelSettings_h8lis")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_settings" type="TextureButton" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+texture_normal = ExtResource("2_6fqup")
+texture_disabled = ExtResource("5_lnm86")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/btn_settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "設定"
+label_settings = SubResource("LabelSettings_h8lis")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_rank" type="TextureButton" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+texture_normal = ExtResource("2_6fqup")
+texture_disabled = ExtResource("5_lnm86")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/btn_rank"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "排名"
+label_settings = SubResource("LabelSettings_h8lis")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_quit_game" type="TextureButton" parent="MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+texture_normal = ExtResource("2_6fqup")
+texture_disabled = ExtResource("3_6f08m")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/btn_quit_game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "關閉遊戲"
+label_settings = SubResource("LabelSettings_h8lis")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="w_setting_popup" parent="." instance=ExtResource("6_5ti1o")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 224.0
+offset_top = 96.0
+offset_right = 370.0
+offset_bottom = 226.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="w_rank_popup" parent="." instance=ExtResource("7_nfq64")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 176.0
+offset_top = 32.0
+offset_right = 396.0
+offset_bottom = 299.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/btn_new_game" to="." method="_on_btn_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/btn_settings" to="." method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/btn_rank" to="." method="_on_btn_rank_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/btn_quit_game" to="." method="_on_btn_quit_game_pressed"]
+[connection signal="confirm_pressed" from="w_setting_popup" to="." method="_on_w_setting_popup_confirm_pressed"]
+[connection signal="btn_config_pressed" from="w_rank_popup" to="." method="_on_w_rank_popup_btn_config_pressed"]
