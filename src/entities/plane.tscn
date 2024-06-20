@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bul0ijyn7ydcb"]
+[gd_scene load_steps=8 format=3 uid="uid://bul0ijyn7ydcb"]
 
 [ext_resource type="Texture2D" uid="uid://dp54dcgrb5wv6" path="res://assets/textures/entities/planes/planeYellow1.png" id="1_dcsv0"]
 [ext_resource type="Script" path="res://src/entities/plane.gd" id="1_y8duw"]
 [ext_resource type="Texture2D" uid="uid://d0bcqgl73e1vy" path="res://assets/textures/entities/planes/planeYellow2.png" id="2_uai1b"]
 [ext_resource type="Texture2D" uid="uid://dduq6trey1eiu" path="res://assets/textures/entities/planes/planeYellow3.png" id="3_ldplb"]
+[ext_resource type="AudioStream" uid="uid://b0fe7ukpremmf" path="res://assets/audio/sound/coin1.ogg" id="5_7qii5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hftvr"]
 animations = [{
@@ -37,3 +38,7 @@ frame_progress = 0.466737
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1mdwt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7qii5")
+bus = &"SFX"
