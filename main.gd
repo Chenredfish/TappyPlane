@@ -17,8 +17,9 @@ var current_score :int = 0
 var score_timer:Timer = Timer.new()
 var timer:Timer = Timer.new()
 
+#初始化程式
 func init_game():
-	pass
+	RankBoard.load_rank_board()
 	
 func ready_game():
 	ui_layer.ready_game()
@@ -57,9 +58,11 @@ func  retry_game()->void:
 	
 	get_tree().paused = false
 	
+#退出遊戲
 func quit_game():
 	game_state_machine.set_value('is_quit_game', true)
 	
+#退出程式
 func end_game():
 	get_tree().quit()
 
@@ -84,15 +87,20 @@ func spawn_rock()->void:
 		a_rock.rotation_degrees = 180
 	self.add_child(a_rock)
 
+##遊戲失敗
 func game_over():
 	get_tree().paused = true
 	plane.queue_free()
 	for rock in get_tree().get_nodes_in_group("rock"):
 		rock.queue_free()
 		
+	if RankBoard.check_rank_board(current_score):
+		ui_layer.show_name_input_popup()
+	else :
+		ui_layer.game_over()
 	audio_game_over.play()
 	#game_form.game_over()
-	ui_layer.game_over()
+	
 	#print("game over")
 
 
@@ -123,3 +131,16 @@ func _on_ui_layer_btn_new_game_pressed():
 
 func _on_ui_layer_btn_quit_game_pressed():
 	quit_game()
+
+
+func _on_ui_layer_name_input_popup_confirm(player_name):
+	if RankBoard.check_rank_board(current_score):
+		RankBoard.update_rank_board(player_name, current_score)
+
+
+func _on_ui_layer_game_form_quit_game():
+	game_state_machine.set_value('is_over_game', true)
+
+
+func _on_ui_layer_game_form_retry_game():
+	game_state_machine.set_value('is_retry_game', true)

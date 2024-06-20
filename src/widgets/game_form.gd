@@ -2,6 +2,7 @@ extends Control
 
 @onready var score_container = %ScoreContainer
 @onready var w_game_over_popup = $w_game_over_popup
+@onready var w_name_input_popup = %w_name_input_popup
 
 
 var number_texture:=[
@@ -19,6 +20,7 @@ var number_texture:=[
 
 signal quit_pressed
 signal retry_pressed
+signal name_input_popup_confirm(player_name:String)
 
 func _ready():
 	w_game_over_popup.hide()
@@ -46,6 +48,9 @@ func update_socre_display(current_score:int)->void:
 
 		digit_spirit.texture = number_texture[digit] #將照片放入，也就是上面的調整數字
 
+func show_name_input_popup():
+	w_name_input_popup.show()
+
 
 func _on_btm_quit_pressed():
 	quit_pressed.emit()
@@ -53,3 +58,12 @@ func _on_btm_quit_pressed():
 
 func _on_btn_retry_pressed():
 	retry_pressed.emit()
+
+
+func _on_w_name_input_popup_btn_confirm_pressed(player_name:String):
+	w_game_over_popup.show()
+	name_input_popup_confirm.emit(player_name)
+	
+
+func _on_w_name_input_popup_btn_quit_pressed():
+	w_game_over_popup.show()
